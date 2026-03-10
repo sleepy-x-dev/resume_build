@@ -2,6 +2,7 @@ import os
 import json
 import magic
 import fitz
+from dotenv import load_dotenv
 from PIL import Image
 import pytesseract
 import spacy
@@ -10,6 +11,7 @@ from pdf2image import convert_from_path
 from sentence_transformers import SentenceTransformer,util
 import pdfplumber
 from langchain_google_genai import ChatGoogleGenerativeAI
+load_dotenv()
 
 
 
@@ -81,10 +83,10 @@ def extract_text_from_jd(jd_path):
 
 
 
-
+api_key = os.getenv("GOOGLE_API_KEY")
 llm = ChatGoogleGenerativeAI(
     model= "models/gemini-2.0-flash",
-    google_api_key= "AIzaSyATB0wbvHQkjOFMdb7qoh14uxzs6gjAhbI"
+    google_api_key=api_key
 )
 
 
